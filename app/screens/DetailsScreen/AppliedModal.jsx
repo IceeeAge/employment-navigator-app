@@ -75,7 +75,7 @@ export default function AppliedModal({ hideModal, companyId ,}) {
       console.log("User Data", response);
       ToastAndroid.show("Applied Successfully!", ToastAndroid.LONG);
       hideModal();
-      navigation.navigate("Applied",loading = { loading: true });
+      navigation.navigate("ApplyScreen");
     });
   };
 
