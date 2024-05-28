@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "employment-navigator-app",
+    "scheme": "employment-navigator-scheme",
     "slug": "employment-navigator-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -25,6 +26,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }
