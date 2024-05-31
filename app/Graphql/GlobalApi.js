@@ -55,9 +55,6 @@ const appliedUser = async (data) => {
           date: "` +
     data.date +
     `"
-    email: "` +
-    data.email +
-    `"
           address: "` +
     data.address +
     `"
