@@ -13,6 +13,7 @@ const getCompany = async () => {
         id
         companyName
         title
+        email
         address
         image {
           id
@@ -53,6 +54,9 @@ const appliedUser = async (data) => {
     `"
           date: "` +
     data.date +
+    `"
+    email: "` +
+    data.email +
     `"
           address: "` +
     data.address +
@@ -96,6 +100,7 @@ const getUserApplied = async (userEmail) => {
           id
           companyName
           jobType
+          email
           address
           logo {
             url

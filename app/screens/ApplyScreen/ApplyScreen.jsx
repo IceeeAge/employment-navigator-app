@@ -6,7 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   ToastAndroid,
-  ActivityIndicator, // Added for loading indicator
+  ActivityIndicator,
+  Pressable,
+  Linking, // Added for loading indicator
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useUser } from "@clerk/clerk-expo";
@@ -14,6 +16,7 @@ import GlobalApi from "../../Graphql/GlobalApi";
 import { Feather, Entypo } from "@expo/vector-icons";
 import DeleteModal from "./DeleteModal";
 import { useNavigation } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function ApplyScreen() {
   const navigate = useNavigation();
@@ -72,6 +75,10 @@ export default function ApplyScreen() {
     onRefresh();
   };
 
+  const handleEmailPress = (email) => {
+    Linking.openURL(`mailto:${email} ?subject=Send Your Reseme&body=Hello`);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.subContainer}>
@@ -101,8 +108,20 @@ export default function ApplyScreen() {
                 <Text>{item?.company.companyName.substring(0, 30)}</Text>
                 <Text>{item?.company.address.substring(0, 30)}</Text>
                 <Text>{item?.date}</Text>
+                <Pressable
+                  onPress={() => handleEmailPress(item?.company.email)}
+                  style={styles.EMailContainer}
+                >
+                  <MaterialCommunityIcons
+                    name="email"
+                    size={24}
+                    color="black"
+                  />
+                    <Text>Send your Resume here</Text>
+                </Pressable>
+
                 <View style={styles.StatusContainer}>
-                  <Feather name="check-circle" size={24} color="green" />
+                  <Feather name="check-circle" size={30} color="green" />
                   <Text>Applied</Text>
                 </View>
               </View>
@@ -152,5 +171,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 10,
     marginTop: 30,
+  },
+  EMailContainer: {
+    flexDirection: "row",
+    marginVertical: 10,
+    borderWidth: 1,
+    paddingHorizontal:9,
+    paddingVertical: 5,
+    marginRight: 90,
+    gap: 10,
+    alignItems: "center",
+    
+    borderRadius: 5,
+    borderColor: "#ccc",
   },
 });
